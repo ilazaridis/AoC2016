@@ -7,14 +7,14 @@ $x = $y = 0;
 $previousX = $previousY = -1;
 $directionX = $directionY = 0;
 foreach ($inputs as $key => $input) {
-	$direction = substr($input, 0, 1);
-	$step = substr($input, 1);
-	if ($key % 2 == 0) {
-		$previousX = $x;
-		$x +=   ($direction == 'L') ? (($y > $previousY) ? -$step : $step) : ($y > $previousY ? $step : -$step);
-	} else {
-		$previousY = $y;
-		$y += ($direction == 'L') ? (($x > $previousX) ? $step : -$step) : ($x > $previousX ? -$step : $step);
-	}
+    $direction = substr($input, 0, 1);
+    $step = substr($input, 1);
+    if ($key % 2 == 0) {
+        $previousX = $x;
+        $x +=   ($direction == 'L') ? (($y > $previousY) ? -$step : $step) : ($y > $previousY ? $step : -$step);
+    } else {
+        $previousY = $y;
+        $y += ($direction == 'L') ? (($x > $previousX) ? $step : -$step) : ($x > $previousX ? -$step : $step);
+    }
 }
 echo "x: " . $x . " y: " . $y . " distance: " . (abs($x) + abs($y));

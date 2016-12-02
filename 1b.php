@@ -8,33 +8,33 @@ $previousX = $previousY = -1;
 $directionX = $directionY = 0;
 $coordinates = [];
 foreach ($inputs as $key => $input) {
-	$direction = substr($input, 0, 1);
-	$step = substr($input, 1);
-	if ($key % 2 == 0) {
-		$previousX = $x;
-		$x += ($direction == 'L') ? (($y > $previousY) ? -$step : $step) : ($y > $previousY ? $step : -$step);
-		if ($x > $previousX) {
-			for ($i = $previousX; $i < $x; $i++) {
-				$coordinates[] = $i . ':' . $y;
-			}
-		} else {
-			for ($i = $previousX; $i > $x; $i--) {
-				$coordinates[] = $i . ':' . $y;
-			}
-		}
-	} else {
-		$previousY = $y;
-		$y += ($direction == 'L') ? (($x > $previousX) ? $step : -$step) : ($x > $previousX ? -$step : $step);
-		if ($y > $previousY) {
-			for ($i = $previousY; $i < $y; $i++) {
-				$coordinates[] = $x . ':' . $i;
-			}
-		} else {
-			for ($i = $previousY; $i > $y; $i--) {
-				$coordinates[] = $x . ':' . $i;
-			}
-		}
-	}
+    $direction = substr($input, 0, 1);
+    $step = substr($input, 1);
+    if ($key % 2 == 0) {
+        $previousX = $x;
+        $x += ($direction == 'L') ? (($y > $previousY) ? -$step : $step) : ($y > $previousY ? $step : -$step);
+        if ($x > $previousX) {
+            for ($i = $previousX; $i < $x; $i++) {
+                $coordinates[] = $i . ':' . $y;
+            }
+        } else {
+            for ($i = $previousX; $i > $x; $i--) {
+                $coordinates[] = $i . ':' . $y;
+            }
+        }
+    } else {
+        $previousY = $y;
+        $y += ($direction == 'L') ? (($x > $previousX) ? $step : -$step) : ($x > $previousX ? -$step : $step);
+        if ($y > $previousY) {
+            for ($i = $previousY; $i < $y; $i++) {
+                $coordinates[] = $x . ':' . $i;
+            }
+        } else {
+            for ($i = $previousY; $i > $y; $i--) {
+                $coordinates[] = $x . ':' . $i;
+            }
+        }
+    }
 }
 $dupes = array_diff_assoc($coordinates, array_unique($coordinates));
 preg_match('/^(-?\d*)\:(-?\d*)$/', reset($dupes), $matches);
